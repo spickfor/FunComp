@@ -1,0 +1,3 @@
+This is what is needed for compiling
+
+gcc example.c gfx.o -lX11 -o example

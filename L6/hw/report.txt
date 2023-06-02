@@ -1,0 +1,71 @@
+Seth Pickford
+Fundamentals of Computing lab 6
+Lab report
+User’s Perspective
+	What the user sees is based off of what they originally have in the command line.  
+If they simply have the command that runs the code with nothing else, then they will be 
+displayed a blank board and a table of elements that they can choose from.  If they have two 
+inputs in the command line, the command to run the program and a file, then they will see the 
+program run the game of life specified in said file.  If they have more than two inputs in the 
+command line, it will give an error and tell them.  So if just the command to run the program is 
+input, the table is shown.  If the user inputs “a” then the code prompts them for two 
+coordinates and then puts an “x” at that spot.  If they input “r” then they are prompted for two 
+coordinates, an “x” is removed from that spot if it was there.  If they select “n” the program 
+iterates forward one step and shows how the cells behave for that step.  If “q” is input, the 
+program quits.  And if “p” is input, the program runs continuously, making it look like its 
+moving.  To stop this part, the user must control c to quit the program.  For the batch mode, 
+which comes from adding a file name in the command line, the code simply uses the file to 
+place the cells on the board and then continuously runs through the iterations.
+
+
+Programmer Perspective
+	First in the main code, the code imports libraries as well as the file that contains the 
+function prototypes. Then it sets the size of the board as a constant to 40.  Next, it enters the 
+main function. In the main function it initializes a double array to 40x40.  Then it references the 
+init and boarddisplay functions, which will be described later.  These just create and display the 
+empty board for the user.  Next the code uses an if statement to select what type of mode the 
+user is wanting.  If the user has one thing in the command line then it does the interactive 
+mode and if it is 2 things in the command line it does batch mode.  More than two in the 
+command line triggers an error message that there are too many inputs.  For interactive mode, 
+first it says that interactive mode is activated.  Next it uses a while loop to continue program 
+until user cancels it.  Then it uses printf to display the table of options to the user.  After it takes 
+the user input for their table decision using a char variable and scanf.  Next it users a switch 
+statement to decide what to do based off of the user’s input for their table decision.  The first 
+case for ‘a’ prints a prompt to input coordinates.  Then it uses scanf to take these inputs.  Next 
+it uses an if statement to make sure that these inputs aren’t outside of our board. If they aren’t 
+then it uses my addcell function to add an ‘x’ in that position. For the case ‘r’ it is very similar to 
+case ‘a’ except it uses the removecell function.  For the ‘n’ case, it uses two functions, run and 
+boarddisplay to go to the next iteration and then show the board. Case ‘q’ simply uses return to 
+exit the program. Case ‘p’ uses the run and boarddisplay functions in a while loop to repeated 
+iterate to the next step.  Usleep and system clear are used to slow it down and clear the 
+window to make it cleaner. Finally it uses the default for switch to print an error if there is a bad 
+input.  After this it enters the else if that defines batch mode.  First it creates a pointer and 
+some other variables.  Then it uses a while and fscanf to take the user file that they input into 
+the command line.  It uses feof to detect the end of the file and leave the loop. In the while 
+loop it uses addcell to add the cells to the board.  Then it uses a different while loop to actually 
+run the program.  It basically runs what case ‘p’ runs. Finally in the main file, it uses an else if to 
+output error if there are too many command line inputs.  For the functions, init creates a blank 
+array of spaces using two for loops.  The boarddisplay function creates the board using for 
+loops to repeat print statements for the top and bottom sides.  For the middle, it uses two for 
+loops to iterate through the array and print the array at the proper spot. The addcell function 
+simply sets the spot in the array specified by the user to x so that when the boarddisplay prints 
+it, it prints an x instead of a blank.  The removecell does the opposite.  It puts a space in the 
+spot in the cell specified by the user and effectively removes an x if it was there. Inbounds 
+function is used to check and make sure the inputs by users are valid and not outside the box.  
+It uses an if statement and conditionals to return true if its inside and false if otherwise. The run 
+function to iterate a step through the code first creates a temporary array.  Then it uses a 
+double for loop to set this temp array to the board values input into the function. Next it 
+initializes a counter, which is used to count the cells touching the cell we are looking at.  After 
+this it uses a double for loop to interate through the array. Inside this it uses the inbounds in a if 
+statement to check if the inputs are valid.  If they are then it does a series of if statements to 
+detect how many cells are touching that spot in the array.  At the end of this, the counter 
+contains the number of cells.  Next, it applies the rules for the game using if statements and 
+conditionals.  Based on these if’s, the cell is either set to an x, remains the same, or set to a 
+space.
+
+Evaluating correctness
+	To evaluate if the code was correct, I ran it in a bunch of different ways and tried to 
+make it mess up.  When it did mess up, I changed that flaw and then tried all over again.  This 
+allowed me to get rid of the bugs and flaws, making the code run properly.
+
+
